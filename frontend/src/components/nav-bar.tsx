@@ -32,7 +32,7 @@ export default function NavBar() {
 
   return (
     <div className="bg-zinc-50 border-b border-zinc-300 w-full py-2">
-      <div className="flex items-center lg:w-1/2 mx-auto gap-4">
+      <div className="flex items-center md:w-3/4 xl:w-2/3 mx-auto gap-4">
         <h1 className="text-2xl tracking-tight font-light flex items-center">
           <img src={stackoverfaux} alt="stackoverfaux" className="w-10 h-10" />
           stack<span className="font-semibold">overfaux</span>
