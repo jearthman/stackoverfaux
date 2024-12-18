@@ -5,6 +5,7 @@ Follow these commands to stand up project
 - docker compose build --no-cache
 - docker compose up
 - cd frontend
+- npm install
 - npm run dev
 
 Go to http://localhost:5173/
