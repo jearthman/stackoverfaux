@@ -8,8 +8,8 @@ Follow these commands to stand up project
 - npm install
 - npm run dev
 
-Go to http://localhost:5173/
-
 You should see data get imported to postgres by Prisma.
+
+Go to http://localhost:5173/
 
 Please click around in the UI and try it out!
