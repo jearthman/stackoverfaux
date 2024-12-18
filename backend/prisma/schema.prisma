@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Question {
+  id        Int        @id @unique
+  title     String
+  body      String
+  creation  Int 
+  score     Int
+  userId    Int
+  user      User       @relation(fields: [userId], references: [id])
+  comments  Comment[]
+  answers   Answer[]
+}
+
+model Answer {
+  id        Int        @id @unique
+  body      String
+  creation  Int
+  score     Int
+  accepted  Boolean    @default(false)
+  questionId Int
+  userId    Int
+  user      User       @relation(fields: [userId], references: [id])
+  comments  Comment[]
+  question  Question   @relation(fields: [questionId], references: [id])
+}
+
+model Comment {
+  id        Int        @id @unique
+  body      String
+  userId    Int
+  user      User       @relation(fields: [userId], references: [id])
+  questionId Int?      // Nullable for comments on answers
+  answerId  Int?       // Nullable for comments on questions
+  question  Question?  @relation(fields: [questionId], references: [id])
+  answer    Answer?    @relation(fields: [answerId], references: [id])
+}
+
+model User {
+  id        Int        @id @unique
+  name      String
+  questions Question[]
+  answers   Answer[]
+  comments  Comment[]
+}
